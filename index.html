@@ -8,9 +8,9 @@
     <link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet">
   	<link rel="stylesheet" href="css/main.css">
   </head>
-  <body ng-controller='HeaderController as vm'>
+  <body>
 
-    <header>
+    <header ng-controller='TableController as vm'>
 
 
   <div class="header">
@@ -28,18 +28,32 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr ng-repeat="item in vm.items">
+					<tr ng-repeat="item in vm.items | orderBy:'-quantity'">
 						<td>{{item.name}}</td>
-						<td>{{(item.price-item.discount)*item.tax | currency}} <span ng-if="item.discount > 0"><img src="/images/sale.png"></span></td>
-						<td>{{item.quantity}}</td>
+						<td>{{(item.price-item.discount)*vm.tax | currency}} <span ng-if="item.discount > 0"><img src="/images/sale.png"></span></td>
+						<td>{{item.quantity}}
+            <img class="arrow" src="http://icons.iconarchive.com/icons/icons8/ios7/256/Arrows-Up-3-icon.png" ng-click="vm.changeQuantity(item,true)">
+             <img class="arrow" src="http://icons.iconarchive.com/icons/icons8/ios7/256/Arrows-Down-2-icon.png" ng-click="vm.changeQuantity(item,false)">
+            </td>
             <td>{{item.color}}</td>
 					</tr>
 				</tbody>
 			</table>
       </div>
+      
+       <form class="col-md-10 col-md-offset-1" novalidate name='addInventory' ng-submit='vm.update(addInventory.$valid)'>
+    Name: <input type='text' ng-model='vm.item.name' required>
+    Price: <input type='text' ng-model='vm.item.price' required>
+    Quantity: <input type='text' ng-model='vm.item.quantity' required min='0' max='10000'>
+    Color: <input type='text' ng-model='vm.item.color' required>
+    Discount: <input type='text' ng-model='vm.item.discount' required>
+    <button type="submit">Add to Inventory</button>
+  </form>
 
 
     </header>
+
+  
 
     <script src="https://code.jquery.com/jquery-1.12.4.js" integrity="sha256-Qw82+bXyGq6MydymqBxNPYTaUXXq7c8v3CwiYwLLNXU=" crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular.min.js"></script>

@@ -20,3 +20,22 @@ table{
 	font-family: 'Lobster', cursive;
 	font-size: 26px;
 }
+
+
+.arrow{
+	height: 20px;
+	width: 25px;
+}
+
+.arrow:hover{
+	cursor: pointer;
+}
+
+form{
+	margin-top: 50px;
+	margin-bottom: 50px;
+}
+
+input.ng-invalid { 
+		background-color: lighten(red, 40); 
+		}
