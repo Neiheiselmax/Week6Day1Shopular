@@ -17,6 +17,9 @@ h1 {
 table {
   font-family: 'Lobster', cursive;
   font-size: 26px; }
+  table tr:hover {
+    background-color: #ffc264 !important;
+    box-shadow: 10px 10px 10px #0CA69E !important; }
 
 .arrow {
   height: 20px;
@@ -28,6 +31,12 @@ table {
 form {
   margin-top: 50px;
   margin-bottom: 50px; }
+  form h2 {
+    text-align: center; }
+
+input {
+  box-shadow: 0px 0px 20px black;
+  max-width: 30%; }
 
 input.ng-invalid {
   background-color: #ffcccc; }
